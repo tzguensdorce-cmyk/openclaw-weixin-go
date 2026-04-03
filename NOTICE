@@ -1,0 +1,8 @@
+openclaw-weixin-go
+
+This project is an independent Go SDK implementation for the WeChat iLink bot protocol.
+
+Protocol behavior and endpoint field mapping were implemented with reference to:
+https://github.com/Tencent/openclaw-weixin
+
+This project is not an official Tencent SDK.
