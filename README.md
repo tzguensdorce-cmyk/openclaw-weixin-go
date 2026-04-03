@@ -2,6 +2,11 @@
 
 [![Go Version](https://img.shields.io/badge/Go-1.24.12-00ADD8?logo=go&logoColor=white)](./go.mod)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/jwhna1/openclaw-weixin-go?style=social)](https://github.com/jwhna1/openclaw-weixin-go)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jwhna1/openclaw-weixin-go)](https://github.com/jwhna1/openclaw-weixin-go/commits/main)
+[![Pure Go](https://img.shields.io/badge/Pure-Go-00ADD8)](https://go.dev/)
+[![CLI QR Login](https://img.shields.io/badge/CLI-QR%20Login-7B42BC)](./cmd/openclaw-weixin-go)
+[![Long Polling](https://img.shields.io/badge/Protocol-Long%20Polling-2EA44F)](./client)
 
 [English README](./README.en.md)
 
