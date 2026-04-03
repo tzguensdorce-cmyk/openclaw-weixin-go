@@ -1,5 +1,8 @@
 # openclaw-weixin-go
 
+[![Go Version](https://img.shields.io/badge/Go-1.24.12-00ADD8?logo=go&logoColor=white)](./go.mod)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
 [中文 README](./README.md)
 
 `openclaw-weixin-go` is a WeChat iLink protocol SDK for Go developers. It packages QR login, long-polling message flow, and default local persistence into a reusable pure Go toolkit that can be integrated directly into standalone projects.
