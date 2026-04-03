@@ -1,5 +1,8 @@
 # openclaw-weixin-go
 
+[![Go Version](https://img.shields.io/badge/Go-1.24.12-00ADD8?logo=go&logoColor=white)](./go.mod)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+
 [English README](./README.en.md)
 
 `openclaw-weixin-go` 是一个面向 Go 开发者的微信 iLink 协议 SDK，专注于把扫码登录、长轮询收发消息和默认本地存储封装成一套可直接复用的纯 Go 能力。
